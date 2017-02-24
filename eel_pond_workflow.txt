@@ -1,0 +1,64 @@
+# Eelpond Differential expression analysis
+brew install fastqc
+pip install multiqc
+brew install trimmomatic
+# Used eelpond differential expression protocol on Barton yeast data in an attempt to determine whether sourmash compute/compare clustering clusters by true expression.
+	# SNF2 13
+	# SNF2 48
+	# WT 34
+	# WT 21
+# Preformed
+fastqc *fastq.gz
+
+# Viewed results
+multiqc .
+
+# Preformed trimming: 
+brew install trimmomatic
+wget https://anonscm.debian.org/cgit/debian-med/trimmomatic.git/plain/adapters/TruSeq3-SE.fa
+	# Adapted to include:
+	>TruSeq_UniversalAdapter
+	AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+	>Illumina_SingleEndAdapter1					
+	ACACTCTTTCCCTACACGACGCTGTTCCATCT
+	>Illumina_SingleEndAdapter2
+	CAAGCAGAAGACGGCATACGAGCTCTTCCGATCT					
+	>Illumina_SingleEndPCRPrimer1
+	AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT				
+	>Illumina_SingleEndPCRPrimer2
+	CAAGCAGAAGACGGCATACGAGCTCTTCCGATCT				
+	>Illumina_SingleEndSequencingPrimer
+	ACACTCTTTCCCTACACGACGCTCTTCCGATCT			
+	>TruSeq3_IndexedAdapter
+	AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+	>TruSeq3_UniversalAdapter
+	AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA
+
+        
+for infile in *fastq.gz
+do 
+ base=$(basename $infile .fastq.gz)
+     trimmomatic SE -phred33 -trimlog ${base}.log ${infile} ${base}_trim_fastq.gz ILLUMINACLIP:AdaptedTruSeq3-SE.fa:2:30:10
+done
+ 
+
+# Make files read only
+chmod u-w ./*_trim.fastq.gz
+
+# Run fastqc on the trimmed files
+fastqc *_trim.fastq.gz
+
+# Run multiqc to check results
+multiqc .
+
+# Preform digital normalization
+mkdir -p diginorm
+cd diginorm
+ln -s *trim_fastq.gz .
+
+normalize-by-median.py -k 20 -C 20 -M 9e9  --savegraph normC20k20.ct  *_trim.fastq.gz
+
+# filter low abundance reads
+filter-abund.py -V -Z 18 normC20k20.ct *.keep
+
+
