@@ -17,31 +17,29 @@ multiqc .
 brew install trimmomatic
 wget https://anonscm.debian.org/cgit/debian-med/trimmomatic.git/plain/adapters/TruSeq3-SE.fa
 	# Adapted to include:
-	>TruSeq_UniversalAdapter
-	AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
-	>Illumina_SingleEndAdapter1					
-	ACACTCTTTCCCTACACGACGCTGTTCCATCT
-	>Illumina_SingleEndAdapter2
-	CAAGCAGAAGACGGCATACGAGCTCTTCCGATCT					
-	>Illumina_SingleEndPCRPrimer1
-	AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT				
-	>Illumina_SingleEndPCRPrimer2
-	CAAGCAGAAGACGGCATACGAGCTCTTCCGATCT				
-	>Illumina_SingleEndSequencingPrimer
-	ACACTCTTTCCCTACACGACGCTCTTCCGATCT			
-	>TruSeq3_IndexedAdapter
-	AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
-	>TruSeq3_UniversalAdapter
-	AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA
-
-        
+	# >TruSeq_UniversalAdapter
+	# AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT
+	# >Illumina_SingleEndAdapter1					
+	# ACACTCTTTCCCTACACGACGCTGTTCCATCT
+	# >Illumina_SingleEndAdapter2
+	# CAAGCAGAAGACGGCATACGAGCTCTTCCGATCT					
+	# >Illumina_SingleEndPCRPrimer1
+	# AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT				
+	# >Illumina_SingleEndPCRPrimer2
+	# CAAGCAGAAGACGGCATACGAGCTCTTCCGATCT				
+	# >Illumina_SingleEndSequencingPrimer
+	# ACACTCTTTCCCTACACGACGCTCTTCCGATCT			
+	# >TruSeq3_IndexedAdapter
+	# AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+	# >TruSeq3_UniversalAdapter
+	# AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA
+  
 for infile in *fastq.gz
 do 
  base=$(basename $infile .fastq.gz)
      trimmomatic SE -phred33 -trimlog ${base}.log ${infile} ${base}_trim_fastq.gz ILLUMINACLIP:AdaptedTruSeq3-SE.fa:2:30:10
 done
  
-
 # Make files read only
 chmod u-w ./*_trim.fastq.gz
 
