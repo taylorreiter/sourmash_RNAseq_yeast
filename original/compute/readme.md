@@ -1,1 +1,1 @@
-folder containing signatures created by `sourmash compute` that have been fixed by `splitpy.py`
+folder containing signatures created by `sourmash compute` that have been fixed by `split_py.py`
