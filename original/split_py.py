@@ -1,3 +1,5 @@
+# Code by Luiz Irber to patch issue where sourmash compute output json files in an improper format. 
+
 import json
 from glob import glob
 import os
