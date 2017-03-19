@@ -1,0 +1,52 @@
+# Sourmash pipeline
+	# obtain files
+	fastq-dump -A ERR458584 --gzip
+	# khmer
+	trim-low-abund.py -k 21 -C 2 --variable-coverage --gzip /Users/taylorreiter/Desktop/Titus_Brown/yeast_raw_fastq/SNF2_BR13/*.fastq.gz
+	
+	# sourmash compute
+		# k: 18, 27, 36
+		# scaled: 20000, 40000, 60000, 80000
+	# Example:
+		sourmash compute -k 30 -o SNF2_BR13_k30_480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 27 -o SNF2_BR13_k27_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 24 -o SNF2_BR13_k24_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 21 -o SNF2_BR13_k21_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 18 -o SNF2_BR13_k18_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 15 -o SNF2_BR13_k15_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 12 -o SNF2_BR13_k12_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 9 -o SNF2_BR13_k9_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+		sourmash compute -k 6 -o SNF2_BR13_k6_s480000 --track-abundance --scaled 480000 ./khmer_out/*abundtrim
+	# Loop: 
+	for k in 18 27 36
+	do
+    	for scale in 20000 40000 60000 80000
+    	do
+        sourmash compute -k $k  -o WT_BR34_k${k}_s${scale}* --track-abundance --scaled $scale ./khmer_out/*abundtrim
+    	done
+	done
+	
+	# Run split.py to reformat json files
+	
+	# sourmash compare
+	for k in 6 9 12 15 18 21 24 27 30
+	do
+    	for scale in 500 1000 5000 10000 20000 40000 80000 160000 240000 480000
+    	do
+        sourmash compare -k $k SNF2_BR13_k${k}_s${scale}* -o compared.${k}.${scale}
+    	done
+	done
+	
+		# sourmash compare
+	for k in 18 27 37
+	do
+    	for scale in 20000 40000 60000 80000 
+    	do
+        sourmash compare -k $k SNF2_BR48_k${k}_s${scale}* -o compared.${k}.${scale}
+    	done
+	done
+	
+		
+	# R plotting 
+		# hierarchical clustering
+		# plots?

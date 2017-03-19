@@ -1,0 +1,7 @@
+./khmer_out/ERR458584.fastq.gz.abundtrim
+./khmer_out/ERR458585.fastq.gz.abundtrim
+./khmer_out/ERR458586.fastq.gz.abundtrim
+./khmer_out/ERR458587.fastq.gz.abundtrim
+./khmer_out/ERR458588.fastq.gz.abundtrim
+./khmer_out/ERR458589.fastq.gz.abundtrim
+./khmer_out/ERR458590.fastq.gz.abundtrim

@@ -1,0 +1,58 @@
+1/19/17
+khmer trim-low-abund
+
+trim-low-abund.py -k 21 -C 2 --variable-coverage --gzip /Users/taylorreiter/Desktop/Titus_Brown/yeast_raw_fastq/SNF2_BR13/*.fastq.gz
+# read 8581563 reads, 437659713 bp
+# wrote 7153634 reads, 364047311 bp
+# looked at 3533282 reads twice (1.41 passes)
+# removed 1427929 reads and trimmed 1521922 reads (34.37%)
+# trimmed or removed 16.82%% of bases (73612402 total)
+# 8581563 reads were high coverage (100.00%);
+# skipped 0 reads/0 bases because of low coverage
+# fp rate estimated to be 0.000
+# output in *.abundtrim
+
+
+trim-low-abund.py -k 21 -M 8e9 -C 2 --variable-coverage --gzip /Users/taylorreiter/Desktop/Titus_Brown/yeast_raw_fastq/WT_BR21/*.fastq.gz
+read 8462684 reads, 431596884 bp
+wrote 7048745 reads, 358670689 bp
+looked at 3297263 reads twice (1.39 passes)
+removed 1413939 reads and trimmed 1507672 reads (34.52%)
+trimmed or removed 16.90%% of bases (72926195 total)
+8462684 reads were high coverage (100.00%);
+skipped 0 reads/0 bases because of low coverage
+fp rate estimated to be 0.000
+output in *.abundtrim
+
+trim-low-abund.py -k 21 -M 8e9 -C 2 --variable-coverage --gzip /Users/taylorreiter/Desktop/Titus_Brown/yeast_raw_fastq/WT_BR34/*.fastq.gz
+read 11040646 reads, 563072946 bp
+wrote 8993826 reads, 457114297 bp
+looked at 2840068 reads twice (1.26 passes)
+removed 2046820 reads and trimmed 2197178 reads (38.44%)
+trimmed or removed 18.82%% of bases (105958649 total)
+11040646 reads were high coverage (100.00%);
+skipped 0 reads/0 bases because of low coverage
+fp rate estimated to be 0.000
+output in *.abundtrim
+
+trim-low-abund.py -k 21 -M 8e9 -C 2 --variable-coverage --gzip /Users/taylorreiter/Desktop/Titus_Brown/yeast_raw_fastq/SNF2_BR48/*.fastq.gz
+read 8849990 reads, 451349490 bp
+wrote 7218708 reads, 367086635 bp
+looked at 3358560 reads twice (1.38 passes)
+removed 1631282 reads and trimmed 1744748 reads (38.15%)
+trimmed or removed 18.67%% of bases (84262855 total)
+8849990 reads were high coverage (100.00%);
+skipped 0 reads/0 bases because of low coverage
+fp rate estimated to be 0.000
+output in *.abundtrim
+
+trim-low-abund.py -k 21 -M 8e9 -C 2 --variable-coverage --gzip /Users/taylorreiter/Desktop/Titus_Brown/yeast_raw_fastq/L1/*.fastq.gz
+read 156587648 reads, 7985970048 bp
+wrote 133828771 reads, 6793602276 bp
+looked at 13052994 reads twice (1.08 passes)
+removed 22758877 reads and trimmed 25589982 reads (30.88%)
+trimmed or removed 14.93%% of bases (1192367772 total)
+156587648 reads were high coverage (100.00%);
+skipped 0 reads/0 bases because of low coverage
+fp rate estimated to be 0.000
+output in *.abundtrim

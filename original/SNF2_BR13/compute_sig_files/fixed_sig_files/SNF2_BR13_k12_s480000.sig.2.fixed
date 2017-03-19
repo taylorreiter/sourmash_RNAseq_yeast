@@ -1,0 +1,42 @@
+[
+    {
+        "class": "sourmash_signature", 
+        "email": "", 
+        "filename": "./khmer_out/ERR458586.fastq.gz.abundtrim", 
+        "hash_function": "0.murmur64", 
+        "signatures": [
+            {
+                "abundances": [
+                    5, 
+                    3, 
+                    46, 
+                    1, 
+                    1, 
+                    7, 
+                    2, 
+                    31, 
+                    9
+                ], 
+                "ksize": 12, 
+                "max_hash": 38430716820228, 
+                "md5sum": "4b927b83209cde53053e45c142919778", 
+                "mins": [
+                    11810923801153, 
+                    21783317565380, 
+                    27910263186474, 
+                    35770373439275, 
+                    652945146928, 
+                    23299017399666, 
+                    9234700310682, 
+                    5403791273531, 
+                    13695657515678
+                ], 
+                "molecule": "dna", 
+                "num": 500, 
+                "seed": 42
+            }
+        ], 
+        "type": "mrnaseq", 
+        "version": 0.4
+    }
+]

@@ -1,0 +1,10 @@
+for infile in ./khmer_out/*abundtrim
+	do
+		for k in 6 9 12 15 18 21 27 30
+	  		do
+	  			for scaled in 1000 5000 10000 20000 40000 80000 160000 240000 480000
+	  				do
+	  					sourmash compute -k ${k} -o SNF2_BR13_k${k}_s${scaled} --track-abundance --scaled ${scaled} ${infile}
+	  				done
+	  		done
+	done
