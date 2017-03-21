@@ -108,5 +108,29 @@ gunzip -c *trim.fq.gz > yeast_all.fq
 ```
 
 Run Trinity
+```
 Trinity --single yeast_all.fq --seqType fq --max_memory 14G --CPU 1
+```
 
+Evaluate assembly with BUSCO
+```
+brew install busco
+curl -O http://busco.ezlab.org/v2/datasets/fungi_odb9.tar.gz
+tar -xzvf fungi_odb9.tar.gz
+busco \
+  -i ~/Desktop/DIB_eelpond/assembly/trinity_out_dir/Trinity.fasta \
+  -o nema_busco_fungi -l fungi_odb9 \
+  -m trans --cpu 1
+```
+BUSCO output
+```
+Summarized benchmarks in BUSCO notation:
+	C:0%[D:0%],F:0%,M:0%,n:290
+
+	248	Complete BUSCOs
+	233	Complete and single-copy BUSCOs
+	15	Complete and duplicated BUSCOs
+	35	Fragmented BUSCOs
+	7	Missing BUSCOs
+	290	Total BUSCO groups searched
+```
