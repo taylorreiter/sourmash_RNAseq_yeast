@@ -52,11 +52,25 @@ multiqc .
 # Preform digital normalization
 mkdir -p diginorm
 cd diginorm
-ln -s *trim_fastq.gz .
+ln -s ../quality/*trim.fastq.gz .
 
 normalize-by-median.py -k 20 -C 20 -M 9e9  --savegraph normC20k20.ct  *_trim.fastq.gz
 
 # filter low abundance reads
 filter-abund.py -V -Z 18 normC20k20.ct *.keep
 
+# RENAME READS!!
+
+# cd into directory made during practice run
+cd ..
+mkdir assembly
+cd assembly
+
+# concatenate all files into a single file
+
+gunzip -c *trim.fq.gz > yeast_all.fq
+
+
+# Run Trinity
+Trinity --single yeast_all.fq --seqType fq --max_memory 14G --CPU 1
 
