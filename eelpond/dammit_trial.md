@@ -6,9 +6,12 @@ Install things
 ```
 brew install infernal parallel ruby emboss hmmer blast transdecoder 
 ```
-And if not installed before:
+And if V2 was not installed before:
 ```
-brew install busco
+cd ~/Desktop/Tools
+git clone https://gitlab.com/ezlab/busco.git
+export PATH=~/Desktop/Tools/busco:$PATH
+echo 'export PATH=~/Desktop/Tools/busco:$PATH' >> $HOME/.bashrc
 ```
 
 ```
