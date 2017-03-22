@@ -1,4 +1,4 @@
-Eelpond Differential expression analysis
+##Eelpond Differential expression analysis
 ```
 brew install fastqc
 pip install multiqc
@@ -134,3 +134,40 @@ Summarized benchmarks in BUSCO notation:
 	7	Missing BUSCOs
 	290	Total BUSCO groups searched
 ```
+See dammit output in dammit_trial.md
+
+Use salmon to quantify expression
+
+Install salmon
+```
+cd ~/Desktop/Tools
+curl -L -O https://github.com/COMBINE-lab/salmon/releases/download/v0.8.2/Salmon-0.8.2_macOS_10.12.tar.gz
+tar xzf Salmon-0.8.2_macOS_10.12.tar.gz
+export PATH=$PATH:~/Desktop/Tools/Salmon-0.8.2_macOX_10.12/bin
+```
+
+Make a directory for the output files and loop in the transcriptome
+```
+cd ~/Desktop/DIB_eelpond
+mkdir quant
+cd quant
+ln -s ../assembly/trinity_out_dir/Trinity.fasta .
+ln -s ../trimmomatic/*trim.fastq.gz .
+```
+Index the transcriptome
+```
+salmon index --index yeast_trinity --transcripts Trinity.fasta --type quasi
+```
+Run salmon
+```
+for file in *trim.fastq.gz
+  do
+    salmon quant -i yeast_trinity -p 2 -l IU -r <(gunzip -c ${file}) -o ${file}quant
+done
+```
+Download and run gather-counts.py to collect all the sample counts
+```
+ curl -L -O https://github.com/ngs-docs/2016-aug-nonmodel-rnaseq/raw/master/files/gather-counts.py
+ python2 gather-counts.py
+ ```
+ 
