@@ -1,4 +1,4 @@
-##Eelpond Differential expression analysis
+## Eelpond Differential expression analysis
 ```
 brew install fastqc
 pip install multiqc
