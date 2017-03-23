@@ -82,7 +82,7 @@ cd ~/Desktop/DIB_eelpond/
 mkdir -p annotation
 cd annotation
 ln -s ~/Desktop/DIB_eelpond/assembly/trinity_out_dir/Trinity.fasta .
-
+```
 Run dammit
 ```
 dammit annotate Trinity.fasta --busco-group eukaryota --n_threads 2 | tee dammit_Trinity_outfile.log
