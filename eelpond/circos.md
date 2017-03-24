@@ -1,4 +1,4 @@
-Install circos
+### Install circos
 
 ```
 cd ~/Desktop/Tools
@@ -34,5 +34,22 @@ Check that everything is installed:
 ```
 circos -modules
 ```
- 
 
+### Run Circos
+
+Link in data
+```
+ln -fs ~/Desktop/Trinity.fasta.dammit/*gff3 .
+ln -fs ~/Desktop/Trinity.fasta.dammit/Trinity.fasta.dammit.fasta .
+ln -fs ~/Desktop/yeast_quant/*counts .
+```
+
+Use khmer to reduce contig size to below 5000
+```
+extract-long-sequences.py Trinity.fasta.dammit.fasta -l 5000 -o long.contigs.Trinity.fasta.dammit.fasta
+```
+
+Edit python script and parse data for circos
+```
+python parse_data_for_circos.py 
+```
